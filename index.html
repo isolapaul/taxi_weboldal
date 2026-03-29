@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kalász Patkó Gábor Taxi Balatonboglár. 1-6 fő személyszállítás, reptéri transzfer, bankkártyás fizetés. Hívjon most!">
+    <title>Taxi Balatonboglár | Kalász Patkó Gábor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FFD700;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Felső sáv - Logó, Telefon és Nyelvválasztó */
+        .top-bar {
+            background-color: var(--dark);
+            color: var(--light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid var(--primary);
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-header a {
+            color: var(--dark);
+            background-color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+
+        .contact-header a:hover {
+            transform: scale(1.05);
+        }
+
+        /* Nyelvválasztó */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+            background: rgba(255,255,255,0.1);
+            padding: 5px;
+            border-radius: 20px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #aaa;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+        }
+
+        .lang-btn:hover {
+            color: var(--light);
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Hero Szekció - Főképpel */
+        .hero {
+            position: relative;
+            background-image: url('img/taxi_patko.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--light);
+            padding: 20px;
+            max-width: 800px;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-call {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-wa {
+            background-color: #25D366;
+            color: white;
+        }
+
+        /* Szolgáltatások */
+        .services-section {
+            padding: 50px 5%;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--dark);
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--gray);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-bottom: 4px solid var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Vélemények szekció */
+        .reviews-section {
+            padding: 50px 5%;
+            background-color: var(--gray);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .review-card i.fa-quote-left {
+            color: var(--primary);
+            font-size: 2rem;
+            opacity: 0.3;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .stars {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .review-source {
+            font-size: 0.8rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-info a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        /* Mobil nézet */
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .right-controls {
+                flex-direction: column-reverse;
+                width: 100%;
+            }
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .btn-large {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="logo-container">
+            <img src="img/patko_logo.jpeg" alt="Patkó Taxi Logó">
+            <div class="logo-text">
+                <h1>Patkó Taxi</h1>
+                <p>Balatonboglár</p>
+            </div>
+        </div>
+        <div class="right-controls">
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-hu" onclick="switchLang('hu')">🇭🇺 HU</button>
+                <button class="lang-btn" id="btn-de" onclick="switchLang('de')">🇩🇪 DE</button>
+            </div>
+            <div class="contact-header">
+                <a href="tel:+36205104225"><i class="fas fa-phone-alt"></i> 06 20 510 4225</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2 data-trn="hero_title">Gyors & Megbízható Taxi</h2>
+            <p data-trn="hero_desc">Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.</p>
+            <div class="action-buttons">
+                <a href="tel:+36205104225" class="btn-large btn-call" data-trn="btn_call"><i class="fas fa-taxi"></i> Hívás Most</a>
+                <a href="https://wa.me/36205104225" target="_blank" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <h2 class="section-title" data-trn="services_title">Szolgáltatásaink</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <i class="fas fa-users service-icon"></i>
+                <h3 data-trn="serv1_title">1-6 Fő Szállítása</h3>
+                <p data-trn="serv1_desc">Kényelmes, tágas autómmal vállalom kisebb csoportok, családok szállítását.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-credit-card service-icon"></i>
+                <h3 data-trn="serv2_title">Bankkártyás Fizetés</h3>
+                <p data-trn="serv2_desc">Nem probléma, ha nincs nálad készpénz! Autómban kényelmesen fizethetsz bankkártyával is.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-shuttle-van service-icon"></i>
+                <h3 data-trn="serv3_title">Reptéri Transzfer</h3>
+                <p data-trn="serv3_desc">Kényelmes és pontos kijutás a reptérre. Nagyobb társaságoknak 8+1 fős kisbuszt is biztosítok!</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-globe service-icon"></i>
+                <h3 data-trn="serv4_title">Német Nyelv</h3>
+                <p data-trn="serv4_desc">Német nyelvű utasaimat is zökkenőmentesen, az anyanyelvükön szolgálom ki. Ich spreche Deutsch!</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-route service-icon"></i>
+                <h3 data-trn="serv5_title">Távolsági Fuvarok</h3>
+                <p data-trn="serv5_desc">Nem csak helyben! Vállalom belföldi távolsági utazások lebonyolítását is, előzetes egyeztetéssel.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-star service-icon" style="color: var(--primary);"></i>
+                <h3 data-trn="serv6_title">Kiváló Értékelés</h3>
+                <p data-trn="serv6_desc">Utasaim elégedettsége a legfontosabb. Büszke vagyok az 5 csillagos Google értékelésemre!</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <h2 class="section-title" data-trn="reviews_title">Rólam mondták</h2>
+        <div class="reviews-grid">
+            
+            <div class="review-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="stars">★★★★★</div>
+                <p class="review-text" data-trn="rev1_text">"Tökéletes választás, kedves, gyorsan reagáló sofőr. Csak ajánlani tudom, már évek óta őt hívjuk."</p>
+                <div class="reviewer-name">Patrik Gilányi</div>
+                <div class="review-source"><i class="fab fa-google"></i> Google Értékelés</div>
+            </div>
+
+            <div class="review-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="stars">★★★★★</div>
+                <p class="review-text" data-trn="rev2_text">"Nagyon korrekt, kedves, humoros. Csak ajánlani tudom mindenkinek."</p>
+                <div class="reviewer-name">Judit Homor</div>
+                <div class="review-source"><i class="fab fa-google"></i> Google Értékelés</div>
+            </div>
+
+            <div class="review-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="stars">★★★★★</div>
+                <p class="review-text" data-trn="rev3_text">"Kedves sofőr, gyors és precíz munkavégzés, jó hangulat, csak ajánlani tudom mindenki számára."</p>
+                <div class="reviewer-name">Dániel Fekete</div>
+                <div class="review-source"><i class="fab fa-google"></i> Google Értékelés</div>
+            </div>
+
+            <div class="review-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="stars">★★★★★</div>
+                <p class="review-text" data-trn="rev4_text">"Balaton déli partján a legszuperebb taxis, kedves, gyors, korrekt áron dolgozik. Csak ajánlani tudom!!"</p>
+                <div class="reviewer-name">Virág Kiss</div>
+                <div class="review-source"><i class="fab fa-google"></i> Google Értékelés</div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <h2>Kalász Patkó Gábor Taxi</h2>
+        <div class="footer-info">
+            <p><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> 8630 Balatonboglár, Wesselényi u. 25.</p>
+            <p><i class="fas fa-phone" style="color: var(--primary);"></i> <a href="tel:+36205104225">06 20 510 4225</a></p>
+            <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/36205104225" target="_blank" style="color: #25D366;" data-trn="footer_wa">WhatsApp-on is elérhető</a></p>
+        </div>
+        <div class="copyright" data-trn="footer_copy">
+            &copy; 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva.
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            hu: {
+                hero_title: "Gyors & Megbízható Taxi",
+                hero_desc: "Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.",
+                btn_call: "<i class='fas fa-taxi'></i> Hívás Most",
+                services_title: "Szolgáltatásaink",
+                serv1_title: "1-6 Fő Szállítása",
+                serv1_desc: "Kényelmes, tágas egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
+                serv2_title: "Bankkártyás Fizetés",
+                serv2_desc: "Nem probléma, ha nincs nálad készpénz! Autómban kényelmesen fizethetsz bankkártyával is.",
+                serv3_title: "Reptéri Transzfer",
+                serv3_desc: "Kényelmes és pontos kijutás a reptérre. Nagyobb társaságoknak 8+1 fős kisbuszt is biztosítok!",
+                serv4_title: "Német Nyelv",
+                serv4_desc: "Német nyelvű utasaimat is zökkenőmentesen, az anyanyelvükön szolgálom ki. Ich spreche Deutsch!",
+                serv5_title: "Távolsági Fuvarok",
+                serv5_desc: "Nem csak helyben! Vállalom belföldi és külföldi távolsági utazások lebonyolítását is, előzetes egyeztetéssel.",
+                serv6_title: "Kiváló Értékelés",
+                serv6_desc: "Utasaim elégedettsége a legfontosabb. Büszke vagyok az 5 csillagos Google értékelésemre!",
+                reviews_title: "Rólam mondták",
+                rev1_text: "\"Tökéletes választás, kedves, gyorsan reagáló sofőr. Csak ajánlani tudom, már évek óta őt hívjuk.\"",
+                rev2_text: "\"Nagyon korrekt, kedves, humoros. Csak ajánlani tudom mindenkinek.\"",
+                rev3_text: "\"Kedves sofőr, gyors és precíz munkavégzés, jó hangulat, csak ajánlani tudom mindenki számára.\"",
+                rev4_text: "\"Balaton déli partján a legszuperebb taxis, kedves, gyors, korrekt áron dolgozik. Csak ajánlani tudom!!\"",
+                footer_wa: "WhatsApp-on is elérhető",
+                footer_copy: "&copy; 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva."
+            },
+            de: {
+                hero_title: "Schnelles & Zuverlässiges Taxi",
+                hero_desc: "Personenbeförderung in Balatonboglár und Umgebung, ohne Kompromisse.",
+                btn_call: "<i class='fas fa-taxi'></i> Jetzt Anrufen",
+                services_title: "Unsere Dienstleistungen",
+                serv1_title: "Transport für 1-6 Personen",
+                serv1_desc: "Ich biete den Transport von kleineren Gruppen und Familien in meinem komfortablen, geräumigen Van an.",
+                serv2_title: "Kartenzahlung",
+                serv2_desc: "Kein Bargeld? Kein Problem! In meinem Fahrzeug können Sie bequem mit Karte bezahlen.",
+                serv3_title: "Flughafentransfer",
+                serv3_desc: "Bequeme und pünktliche Fahrt zum Flughafen. Für größere Gruppen biete ich auch einen 8+1-Sitzer-Kleinbus an!",
+                serv4_title: "Deutschsprachiger Service",
+                serv4_desc: "Ich bediene meine deutschsprachigen Fahrgäste reibungslos in ihrer Muttersprache. Ich spreche Deutsch!",
+                serv5_title: "Fernfahrten",
+                serv5_desc: "Nicht nur lokal! Nach vorheriger Absprache übernehme ich auch in- und ausländische Fernfahrten.",
+                serv6_title: "Hervorragende Bewertungen",
+                serv6_desc: "Die Zufriedenheit meiner Fahrgäste steht an erster Stelle. Ich bin stolz auf meine 5-Sterne-Google-Bewertung!",
+                reviews_title: "Was meine Fahrgäste sagen",
+                rev1_text: "\"Perfekte Wahl, netter, schnell reagierender Fahrer. Ich kann ihn nur empfehlen, wir rufen ihn schon seit Jahren an.\"",
+                rev2_text: "\"Sehr korrekt, nett und humorvoll. Kann ich jedem nur empfehlen.\"",
+                rev3_text: "\"Netter Fahrer, schnelle und präzise Arbeit, gute Stimmung, kann ich nur jedem empfehlen.\"",
+                rev4_text: "\"Der tollste Taxifahrer am Südufer des Plattensees, nett, schnell und arbeitet zu fairen Preisen. Kann ich nur empfehlen!!\"",
+                footer_wa: "Auch über WhatsApp erreichbar",
+                footer_copy: "&copy; 2026 taxipatkobalatonboglar.hu | Alle Rechte vorbehalten."
+            }
+        };
+
+        function switchLang(lang) {
+            document.querySelectorAll('[data-trn]').forEach(element => {
+                const key = element.getAttribute('data-trn');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            document.documentElement.lang = lang;
+        }
+    </script>
+
+</body>
+</html>
