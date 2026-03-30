@@ -15,6 +15,7 @@
             --light: #ffffff;
             --gray: #f5f5f5;
             --call-green: #00c853; /* Élénk zöld a hívásgombhoz */
+            --map-blue: #4285F4; /* Google kék a térképhez */
         }
 
         * {
@@ -215,6 +216,11 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .btn-large:hover {
+            opacity: 0.9;
         }
 
         .btn-call {
@@ -225,6 +231,11 @@
         .btn-wa {
             background-color: #25D366;
             color: #0b3d21;
+        }
+
+        .btn-map {
+            background-color: var(--map-blue);
+            color: var(--light);
         }
 
         /* Szolgáltatások */
@@ -397,6 +408,7 @@
             .btn-large {
                 width: 100%;
                 justify-content: center;
+                font-size: 1.2rem; /* Mobilon picit kisebb gomb szöveg, hogy kiférjen a 3 gomb */
             }
         }
     </style>
@@ -430,6 +442,7 @@
             <div class="action-buttons">
                 <a href="tel:+36205104225" class="btn-large btn-call" data-trn="btn_call"><i class="fas fa-taxi"></i> Hívás Most</a>
                 <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="btn-large btn-map" data-trn="btn_map"><i class="fas fa-map-marker-alt"></i> Térkép</a>
             </div>
         </div>
     </section>
@@ -519,7 +532,7 @@
     <footer>
         <h2>Kalász Gábor Taxi</h2>
         <div class="footer-info">
-            <p><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> 8630 Balatonboglár, Wesselényi u. 25.</p>
+            <p><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> <a href="https://www.google.com/maps/place/Kal%C3%A1sz+Patk%C3%B3+G%C3%A1bor+(1-6+F%C5%91%2FPersonen)/@46.7700112,17.6671332,17z" target="_blank" rel="noopener noreferrer" style="color: var(--light);">8630 Balatonboglár, Wesselényi u. 25.</a></p>
             <p><i class="fas fa-phone" style="color: var(--primary);"></i> <a href="tel:+36205104225">06 20 510 4225</a></p>
             <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" style="color: #25D366;" data-trn="footer_wa">WhatsApp-on is elérhető</a></p>
         </div>
@@ -542,6 +555,7 @@
                 hero_title: "Gyors & Megbízható Taxi",
                 hero_desc: "Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.",
                 btn_call: "Hívás Most",
+                btn_map: "Térkép",
                 services_title: "Szolgáltatásaink",
                 serv1_title: "1-6 Fő Szállítása",
                 serv1_desc: "Kényelmes egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
@@ -569,6 +583,7 @@
                 hero_title: "Schnelles & Zuverlässiges Taxi",
                 hero_desc: "Personenbeförderung in Balatonboglár und Umgebung - ohne Kompromisse.",
                 btn_call: "Jetzt anrufen",
+                btn_map: "Karte",
                 services_title: "Unsere Dienstleistungen",
                 serv1_title: "Transport für 1-6 Personen",
                 serv1_desc: "Mit meinem komfortablen Großraumwagen befördere ich kleinere Gruppen und Familien.",
@@ -602,6 +617,8 @@
                 if (translation) {
                     if (key === 'btn_call') {
                         element.innerHTML = "<i class='fas fa-taxi'></i> " + translation;
+                    } else if (key === 'btn_map') {
+                        element.innerHTML = "<i class='fas fa-map-marker-alt'></i> " + translation;
                     } else {
                         element.textContent = translation;
                     }
