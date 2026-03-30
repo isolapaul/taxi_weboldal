@@ -2,8 +2,10 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kalász Patkó Gábor Taxi Balatonboglár. 1-6 fő személyszállítás, reptéri transzfer, bankkártyás fizetés. Hívjon most!">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Taxi Balatonboglár | Kalász Patkó Gábor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -131,7 +133,7 @@
             bottom: 25px;
             right: 25px;
             background-color: var(--call-green);
-            color: white;
+            color: #083d1a;
             width: 65px;
             height: 65px;
             border-radius: 50%;
@@ -222,7 +224,7 @@
 
         .btn-wa {
             background-color: #25D366;
-            color: white;
+            color: #0b3d21;
         }
 
         /* Szolgáltatások */
@@ -427,7 +429,7 @@
             <p data-trn="hero_desc">Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.</p>
             <div class="action-buttons">
                 <a href="tel:+36205104225" class="btn-large btn-call" data-trn="btn_call"><i class="fas fa-taxi"></i> Hívás Most</a>
-                <a href="https://wa.me/36205104225" target="_blank" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
             </div>
         </div>
     </section>
@@ -439,7 +441,7 @@
             <div class="service-card">
                 <i class="fas fa-users service-icon"></i>
                 <h3 data-trn="serv1_title">1-6 Fő Szállítása</h3>
-                <p data-trn="serv1_desc">Kényelmes, tágas autómmal vállalom kisebb csoportok, családok szállítását.</p>
+                <p data-trn="serv1_desc">Kényelmes egyterű autómmal vállalom kisebb csoportok, családok szállítását.</p>
             </div>
 
             <div class="service-card">
@@ -519,7 +521,7 @@
         <div class="footer-info">
             <p><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> 8630 Balatonboglár, Wesselényi u. 25.</p>
             <p><i class="fas fa-phone" style="color: var(--primary);"></i> <a href="tel:+36205104225">06 20 510 4225</a></p>
-            <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/36205104225" target="_blank" style="color: #25D366;" data-trn="footer_wa">WhatsApp-on is elérhető</a></p>
+            <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" style="color: #25D366;" data-trn="footer_wa">WhatsApp-on is elérhető</a></p>
         </div>
         <div class="legal-links" style="margin-top: 20px;">
             <a href="impresszum.html" style="color: #aaa; text-decoration: none; margin: 0 10px;" data-trn="link_impresszum">Impresszum</a> | 
@@ -539,10 +541,10 @@
             hu: {
                 hero_title: "Gyors & Megbízható Taxi",
                 hero_desc: "Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.",
-                btn_call: "<i class='fas fa-taxi'></i> Hívás Most",
+                btn_call: "Hívás Most",
                 services_title: "Szolgáltatásaink",
                 serv1_title: "1-6 Fő Szállítása",
-                serv1_desc: "Kényelmes, tágas egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
+                serv1_desc: "Kényelmes egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
                 serv2_title: "Bankkártyás Fizetés",
                 serv2_desc: "Nem probléma, ha nincs nálad készpénz! Autómban kényelmesen fizethetsz bankkártyával is.",
                 serv3_title: "Reptéri Transzfer",
@@ -561,42 +563,48 @@
                 footer_wa: "WhatsApp-on is elérhető",
                 link_impresszum: "Impresszum",
                 link_adatvedelem: "Adatvédelmi Tájékoztató",
-                footer_copy: "&copy; 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva."
+                footer_copy: "© 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva."
             },
             de: {
                 hero_title: "Schnelles & Zuverlässiges Taxi",
-                hero_desc: "Personenbeförderung in Balatonboglár und Umgebung, ohne Kompromisse.",
-                btn_call: "<i class='fas fa-taxi'></i> Jetzt Anrufen",
+                hero_desc: "Personenbeförderung in Balatonboglár und Umgebung - ohne Kompromisse.",
+                btn_call: "Jetzt anrufen",
                 services_title: "Unsere Dienstleistungen",
                 serv1_title: "Transport für 1-6 Personen",
-                serv1_desc: "Ich biete den Transport von kleineren Gruppen und Familien in meinem komfortablen, geräumigen Van an.",
+                serv1_desc: "Mit meinem komfortablen Großraumwagen befördere ich kleinere Gruppen und Familien.",
                 serv2_title: "Kartenzahlung",
                 serv2_desc: "Kein Bargeld? Kein Problem! In meinem Fahrzeug können Sie bequem mit Karte bezahlen.",
                 serv3_title: "Flughafentransfer",
                 serv3_desc: "Bequeme und pünktliche Fahrt zum Flughafen. Für größere Gruppen biete ich auch einen 8+1-Sitzer-Kleinbus an!",
                 serv4_title: "Deutschsprachiger Service",
-                serv4_desc: "Ich bediene meine deutschsprachigen Fahrgäste reibungslos in ihrer Muttersprache. Ich spreche Deutsch!",
+                serv4_desc: "Ich betreue meine deutschsprachigen Fahrgäste reibungslos in ihrer Muttersprache. Ich spreche Deutsch!",
                 serv5_title: "Fernfahrten",
-                serv5_desc: "Nicht nur lokal! Nach vorheriger Absprache übernehme ich auch in- und ausländische Fernfahrten.",
+                serv5_desc: "Nicht nur vor Ort! Nach vorheriger Absprache übernehme ich auch Fernfahrten im In- und Ausland.",
                 serv6_title: "Hervorragende Bewertungen",
                 serv6_desc: "Die Zufriedenheit meiner Fahrgäste steht an erster Stelle. Ich bin stolz auf meine 5-Sterne-Google-Bewertung!",
                 reviews_title: "Was meine Fahrgäste sagen",
                 rev1_text: "\"Wir sind schon mehrmals mit Gábor gefahren und er ist immer zuverlässig und pünktlich! Er spricht hervorragend Deutsch, ist super freundlich und dazu noch gutaussehend 😉🙈 Sehr zu empfehlen! Vielen Dank, dass du so zuverlässig bist!\"",
-                rev2_text: "\"Gábor ist nicht nur ein gutaussehender Taxifahrer, sondern auch ein GENTLEMAN!! Vielen Dank, dass du uns am frühen Samstagmorgen zu unserer Unterkunft gebracht hast! Es war nicht einfach! Wir entschuldigen uns für die Unannehmlichkeiten! Er hat eine enorme Geduld mit Menschen, was sehr selten ist! Wir können ihn nur empfehlen!! Liebe Grüße, Noémi 🤗\"",
-                rev3_text: "\"Respektvoll, nett, hilfsbereit, trotz ständigem Stress hat er sich Zeit für uns genommen, damit wir zu unserem Konzert kommen, und für den Rückweg, obwohl er nicht in der Stadt war, hat er jemand anderen empfohlen, damit wir nach Hause kommen, 10/10 für seine Einstellung und Freundlichkeit, danke\"",
+                rev2_text: "\"Gábor ist nicht nur ein gutaussehender Taxifahrer, sondern auch ein echter Gentleman!! Vielen Dank, dass du uns am frühen Samstagmorgen zu unserer Unterkunft gebracht hast! Es war nicht einfach! Wir entschuldigen uns für die Unannehmlichkeiten. Er hat eine enorme Geduld mit Menschen, was sehr selten ist! Wir können ihn nur empfehlen!! Liebe Grüße, Noémi 🤗\"",
+                rev3_text: "\"Respektvoll, freundlich und hilfsbereit. Trotz ständigem Stress hat er sich Zeit für uns genommen, damit wir unser Konzert erreichen. Für den Rückweg hat er uns, obwohl er selbst nicht in der Stadt war, jemanden empfohlen, damit wir nach Hause kommen. 10/10 für seine Einstellung und Freundlichkeit, danke!\"",
                 rev4_text: "\"Der tollste Taxifahrer am Südufer des Plattensees, nett, schnell und arbeitet zu fairen Preisen. Kann ich nur empfehlen!!\"",
                 footer_wa: "Auch über WhatsApp erreichbar",
                 link_impresszum: "Impressum",
                 link_adatvedelem: "Datenschutzerklärung",
-                footer_copy: "&copy; 2026 taxipatkobalatonboglar.hu | Alle Rechte vorbehalten."
+                footer_copy: "© 2026 taxipatkobalatonboglar.hu | Alle Rechte vorbehalten."
             }
         };
 
         function switchLang(lang) {
             document.querySelectorAll('[data-trn]').forEach(element => {
-                const key = element.getAttribute('data-trn');
-                if (translations[lang][key]) {
-                    element.innerHTML = translations[lang][key];
+                const key = element.dataset.trn;
+                const translation = translations[lang][key];
+
+                if (translation) {
+                    if (key === 'btn_call') {
+                        element.innerHTML = "<i class='fas fa-taxi'></i> " + translation;
+                    } else {
+                        element.textContent = translation;
+                    }
                 }
             });
 
