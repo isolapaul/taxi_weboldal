@@ -41,13 +41,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            position: fixed; /* Fix pozíció, hogy a script mozgathassa */
+            position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             border-bottom: 4px solid var(--primary);
-            transition: top 0.3s ease-in-out; /* Sima animáció fel-le csúszáshoz */
+            transition: top 0.3s ease-in-out; 
         }
 
         .logo-container {
@@ -130,6 +130,22 @@
         .lang-btn.active {
             background-color: var(--primary);
             color: var(--dark);
+        }
+
+        /* Hamburger menü ikon */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
         }
 
         /* Lebegő Hívás Gomb */
@@ -240,6 +256,11 @@
         .btn-map {
             background-color: var(--map-blue);
             color: var(--light);
+        }
+        
+        .btn-review {
+            background-color: var(--primary);
+            color: var(--dark);
         }
 
         /* Szolgáltatások */
@@ -357,6 +378,11 @@
             margin-top: 5px;
         }
 
+        .review-action {
+            text-align: center;
+            margin-top: 40px;
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -391,26 +417,39 @@
         /* Kifejezetten Mobil nézet optimalizáció */
         @media (max-width: 768px) {
             body {
-                padding-top: 70px; /* Mobilon kisebb a fejléc, kisebb helyet kell kihagyni */
+                padding-top: 70px;
             }
             .top-bar {
                 padding: 10px 5%;
-                /* Kiszedtem a flex-direction: column-t, így egy sorban maradnak bal és jobb oldalon! */
+                flex-wrap: nowrap; 
             }
             .logo-container {
-                gap: 10px;
+                gap: 8px; 
             }
             .logo-container img {
-                height: 40px; /* Mobilon picit kisebb logó, hogy elférjen a menü mellett */
+                height: 35px; 
             }
             .logo-text h1 {
-                font-size: 1.2rem;
+                font-size: 1.1rem; 
+            }
+            .logo-text p {
+                font-size: 0.7rem;
             }
             .right-controls {
-                gap: 10px;
+                gap: 12px; 
+            }
+            .lang-switcher {
+                padding: 3px;
+            }
+            .lang-btn {
+                font-size: 0.9rem; 
+                padding: 4px 8px;
+            }
+            .mobile-menu-btn {
+                display: block; 
             }
             .contact-header {
-                display: none; /* Mobilon elrejtjük a fenti gombot, mert lent van a zöld lebegő */
+                display: none; 
             }
             .hero-content h2 {
                 font-size: 2.2rem;
@@ -441,6 +480,11 @@
                 <button class="lang-btn active" id="btn-hu" onclick="switchLang('hu')">🇭🇺 HU</button>
                 <button class="lang-btn" id="btn-de" onclick="switchLang('de')">🇩🇪 DE</button>
             </div>
+            
+            <button class="mobile-menu-btn" aria-label="Menü">
+                <i class="fas fa-bars"></i>
+            </button>
+
             <div class="contact-header">
                 <a href="tel:+36205104225"><i class="fas fa-phone-alt"></i> 06 20 510 4225</a>
             </div>
@@ -540,6 +584,10 @@
             </div>
 
         </div>
+        
+        <div class="review-action">
+            <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="btn-large btn-review" data-trn="btn_review"><i class="fas fa-pencil-alt"></i> Vélemény írása</a>
+        </div>
     </section>
 
     <footer>
@@ -570,6 +618,7 @@
                 hero_desc: "Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.",
                 btn_call: "Hívás Most",
                 btn_map: "Térkép",
+                btn_review: "Vélemény írása",
                 services_title: "Szolgáltatásaink",
                 serv1_title: "1-6 Fő Szállítása",
                 serv1_desc: "Kényelmes egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
@@ -598,6 +647,7 @@
                 hero_desc: "Personenbeförderung in Balatonboglár und Umgebung - ohne Kompromisse.",
                 btn_call: "Jetzt anrufen",
                 btn_map: "Karte",
+                btn_review: "Bewertung schreiben",
                 services_title: "Unsere Dienstleistungen",
                 serv1_title: "Transport für 1-6 Personen",
                 serv1_desc: "Mit meinem komfortablen Großraumwagen befördere ich kleinere Gruppen und Familien.",
@@ -633,6 +683,8 @@
                         element.innerHTML = "<i class='fas fa-taxi'></i> " + translation;
                     } else if (key === 'btn_map') {
                         element.innerHTML = "<i class='fas fa-map-marker-alt'></i> " + translation;
+                    } else if (key === 'btn_review') {
+                        element.innerHTML = "<i class='fas fa-pencil-alt'></i> " + translation;
                     } else {
                         element.textContent = translation;
                     }
@@ -645,18 +697,16 @@
             document.documentElement.lang = lang;
         }
 
-        // --- ÚJ FUNKCIÓ: Fejléc elrejtése lefelé görgetéskor, megjelenítése felfelé görgetéskor ---
+        // Fejléc elrejtése lefelé görgetéskor, megjelenítése felfelé görgetéskor
         let prevScrollpos = window.scrollY || window.pageYOffset;
         const topBar = document.querySelector(".top-bar");
         
         window.onscroll = function() {
             let currentScrollPos = window.scrollY || window.pageYOffset;
             
-            // Ha felfelé görgetünk, VAGY ha még teljesen a lap tetején vagyunk (hogy ne ugráljon feleslegesen)
             if (prevScrollpos > currentScrollPos || currentScrollPos < 50) {
                 topBar.style.top = "0";
             } else {
-                // Lefelé görgetünk: elcsúsztatjuk a fejlécet felfelé a magasságával megegyező mértékben
                 topBar.style.top = `-${topBar.offsetHeight}px`;
             }
             prevScrollpos = currentScrollPos;
