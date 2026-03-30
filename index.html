@@ -18,6 +18,11 @@
             --map-blue: #4285F4; 
         }
 
+        html {
+            scroll-behavior: smooth; /* Sima görgetés a horgony linkekhez */
+            scroll-padding-top: 84px; /* Hogy a fix fejléc ne takarja ki a szekciók tetejét */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -30,7 +35,7 @@
             color: var(--dark);
             line-height: 1.6;
             -webkit-tap-highlight-color: transparent; 
-            padding-top: 84px; /* Helybiztosítás a fixált fejlécnek, hogy ne takarja ki a hero tetejét */
+            padding-top: 84px; 
         }
 
         /* Felső sáv - Logó, Telefon és Nyelvválasztó */
@@ -134,7 +139,7 @@
 
         /* Hamburger menü ikon */
         .mobile-menu-btn {
-            display: none;
+            display: block; /* Most már mindenhol látszik a menügomb */
             background: none;
             border: none;
             color: var(--light);
@@ -146,6 +151,43 @@
 
         .mobile-menu-btn:hover {
             color: var(--primary);
+        }
+
+        /* Lenyíló Menü */
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        }
+
+        .mobile-menu.open {
+            max-height: 250px; /* Elegendő hely a 3 menüpontnak */
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .mobile-menu a {
+            color: var(--light);
+            text-decoration: none;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-top: 1px solid #333;
+            display: block;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+            background: rgba(255,255,255,0.05);
         }
 
         /* Lebegő Hívás Gomb */
@@ -251,11 +293,6 @@
         .btn-wa {
             background-color: #25D366;
             color: #0b3d21;
-        }
-
-        .btn-map {
-            background-color: var(--map-blue);
-            color: var(--light);
         }
         
         .btn-review {
@@ -445,9 +482,6 @@
                 font-size: 0.9rem; 
                 padding: 4px 8px;
             }
-            .mobile-menu-btn {
-                display: block; 
-            }
             .contact-header {
                 display: none; 
             }
@@ -481,7 +515,7 @@
                 <button class="lang-btn" id="btn-de" onclick="switchLang('de')">🇩🇪 DE</button>
             </div>
             
-            <button class="mobile-menu-btn" aria-label="Menü">
+            <button class="mobile-menu-btn" aria-label="Menü" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
@@ -489,6 +523,12 @@
                 <a href="tel:+36205104225"><i class="fas fa-phone-alt"></i> 06 20 510 4225</a>
             </div>
         </div>
+
+        <nav id="mobileNav" class="mobile-menu">
+            <a href="#services" data-trn="menu_services" onclick="toggleMenu()">Szolgáltatásaim</a>
+            <a href="#reviews" data-trn="menu_reviews" onclick="toggleMenu()">Vélemények</a>
+            <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" data-trn="menu_map" onclick="toggleMenu()"><i class="fas fa-map-marker-alt" style="color: var(--map-blue);"></i> Térkép</a>
+        </nav>
     </header>
 
     <section class="hero">
@@ -499,13 +539,12 @@
             <div class="action-buttons">
                 <a href="tel:+36205104225" class="btn-large btn-call" data-trn="btn_call"><i class="fas fa-taxi"></i> Hívás Most</a>
                 <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="btn-large btn-map" data-trn="btn_map"><i class="fas fa-map-marker-alt"></i> Térkép</a>
             </div>
         </div>
     </section>
 
-    <section class="services-section">
-        <h2 class="section-title" data-trn="services_title">Szolgáltatásaink</h2>
+    <section id="services" class="services-section">
+        <h2 class="section-title" data-trn="services_title">Szolgáltatásaim</h2>
         <div class="services-grid">
             
             <div class="service-card">
@@ -547,7 +586,7 @@
         </div>
     </section>
 
-    <section class="reviews-section">
+    <section id="reviews" class="reviews-section">
         <h2 class="section-title" data-trn="reviews_title">Rólam mondták</h2>
         <div class="reviews-grid">
             
@@ -611,15 +650,22 @@
     </a>
 
     <script>
-        // Nyelvi váltó funkció
+        // Hamburger menü nyitása-csukása
+        function toggleMenu() {
+            document.getElementById("mobileNav").classList.toggle("open");
+        }
+
+        // Nyelvi váltó funkció (kibővítve a menüpontokkal)
         const translations = {
             hu: {
+                menu_services: "Szolgáltatásaim",
+                menu_reviews: "Vélemények",
+                menu_map: "Térkép",
                 hero_title: "Gyors & Megbízható Taxi",
                 hero_desc: "Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.",
                 btn_call: "Hívás Most",
-                btn_map: "Térkép",
                 btn_review: "Vélemény írása",
-                services_title: "Szolgáltatásaink",
+                services_title: "Szolgáltatásaim",
                 serv1_title: "1-6 Fő Szállítása",
                 serv1_desc: "Kényelmes egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
                 serv2_title: "Bankkártyás Fizetés",
@@ -643,12 +689,14 @@
                 footer_copy: "© 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva."
             },
             de: {
+                menu_services: "Meine Dienstleistungen",
+                menu_reviews: "Bewertungen",
+                menu_map: "Karte",
                 hero_title: "Schnelles & Zuverlässiges Taxi",
                 hero_desc: "Personenbeförderung in Balatonboglár und Umgebung - ohne Kompromisse.",
                 btn_call: "Jetzt anrufen",
-                btn_map: "Karte",
                 btn_review: "Bewertung schreiben",
-                services_title: "Unsere Dienstleistungen",
+                services_title: "Meine Dienstleistungen",
                 serv1_title: "Transport für 1-6 Personen",
                 serv1_desc: "Mit meinem komfortablen Großraumwagen befördere ich kleinere Gruppen und Familien.",
                 serv2_title: "Kartenzahlung",
@@ -681,8 +729,8 @@
                 if (translation) {
                     if (key === 'btn_call') {
                         element.innerHTML = "<i class='fas fa-taxi'></i> " + translation;
-                    } else if (key === 'btn_map') {
-                        element.innerHTML = "<i class='fas fa-map-marker-alt'></i> " + translation;
+                    } else if (key === 'menu_map') {
+                        element.innerHTML = "<i class='fas fa-map-marker-alt' style='color: var(--map-blue);'></i> " + translation;
                     } else if (key === 'btn_review') {
                         element.innerHTML = "<i class='fas fa-pencil-alt'></i> " + translation;
                     } else {
@@ -708,6 +756,8 @@
                 topBar.style.top = "0";
             } else {
                 topBar.style.top = `-${topBar.offsetHeight}px`;
+                // Ha elindulunk lefelé és nyitva van a menü, csukjuk be
+                document.getElementById("mobileNav").classList.remove("open");
             }
             prevScrollpos = currentScrollPos;
         }
