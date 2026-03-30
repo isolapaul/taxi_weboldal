@@ -25,18 +25,15 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth; /* Finom görgetés az oldalon belül */
-        }
-
         body {
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
             -webkit-tap-highlight-color: transparent; 
+            padding-top: 84px; /* Helybiztosítás a fixált fejlécnek, hogy ne takarja ki a hero tetejét */
         }
 
-        /* Felső sáv */
+        /* Felső sáv - Logó, Telefon és Nyelvválasztó */
         .top-bar {
             background-color: var(--dark);
             color: var(--light);
@@ -44,11 +41,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            position: sticky;
+            position: fixed; /* Fix pozíció, hogy a script mozgathassa */
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             border-bottom: 4px solid var(--primary);
-            flex-wrap: wrap;
+            transition: top 0.3s ease-in-out; /* Sima animáció fel-le csúszáshoz */
         }
 
         .logo-container {
@@ -68,6 +67,7 @@
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .logo-text p {
@@ -78,7 +78,7 @@
         .right-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .contact-header a {
@@ -132,75 +132,6 @@
             color: var(--dark);
         }
 
-        /* Hamburger Menü Gomb */
-        .menu-toggle-btn {
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 5px 10px;
-        }
-
-        /* Jobb oldali becsúszó sáv (Side Menu) */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -300px; /* Alapból rejtve */
-            width: 280px;
-            height: 100vh;
-            background-color: var(--dark);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            padding: 80px 30px 30px;
-            transition: right 0.3s ease;
-            z-index: 2000;
-        }
-
-        .side-menu.active {
-            right: 0;
-        }
-
-        .close-menu-btn {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .side-menu a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.3rem;
-            padding: 15px 0;
-            border-bottom: 1px solid #333;
-            transition: color 0.3s;
-            font-weight: bold;
-        }
-
-        .side-menu a:hover {
-            color: var(--primary);
-        }
-
-        .side-menu .menu-map-btn {
-            background-color: var(--map-blue);
-            color: var(--light);
-            text-align: center;
-            border-radius: 8px;
-            margin-top: 30px;
-            border: none;
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
         /* Lebegő Hívás Gomb */
         .floating-call-btn {
             position: fixed;
@@ -216,7 +147,7 @@
             justify-content: center;
             font-size: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 999;
+            z-index: 9999;
             text-decoration: none;
             animation: pulse 2s infinite;
         }
@@ -231,13 +162,13 @@
             transform: scale(0.9);
         }
 
-        /* Hero Szekció - Visszaállítva a korábbi verzióra */
+        /* Hero Szekció */
         .hero {
             position: relative;
             background-image: url('img/taxi_patko.jpeg');
             background-size: cover;
             background-position: center;
-            height: 70vh; 
+            height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,11 +237,15 @@
             color: #0b3d21;
         }
 
+        .btn-map {
+            background-color: var(--map-blue);
+            color: var(--light);
+        }
+
         /* Szolgáltatások */
         .services-section {
             padding: 50px 5%;
             background-color: var(--light);
-            scroll-margin-top: 80px; /* Hogy a menü ne takarja ki ugráskor */
         }
 
         .section-title {
@@ -368,7 +303,6 @@
         .reviews-section {
             padding: 50px 5%;
             background-color: var(--gray);
-            scroll-margin-top: 80px; /* Hogy a menü ne takarja ki ugráskor */
         }
 
         .reviews-grid {
@@ -377,7 +311,6 @@
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            margin-bottom: 40px;
         }
 
         .review-card {
@@ -424,15 +357,6 @@
             margin-top: 5px;
         }
 
-        .review-action-container {
-            text-align: center;
-        }
-
-        .btn-review {
-            background-color: var(--map-blue);
-            color: var(--light);
-        }
-
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -464,24 +388,29 @@
             padding-top: 20px;
         }
 
-        /* Mobil nézet optimalizáció */
+        /* Kifejezetten Mobil nézet optimalizáció */
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px; /* Mobilon kisebb a fejléc, kisebb helyet kell kihagyni */
+            }
             .top-bar {
-                flex-direction: row; /* Mobilon is maradjon egy sorban a logó és a menü */
                 padding: 10px 5%;
+                /* Kiszedtem a flex-direction: column-t, így egy sorban maradnak bal és jobb oldalon! */
             }
-            .contact-header {
-                display: none; 
+            .logo-container {
+                gap: 10px;
             }
-            .lang-switcher {
-                display: none; /* Mobilon áttesszük a nyelvet a menübe vagy csak elrejtjük a zavaró gombokat, de jobb ha elfér. Jelenleg csak a hamburger menüt hagyjuk itt kint */
+            .logo-container img {
+                height: 40px; /* Mobilon picit kisebb logó, hogy elférjen a menü mellett */
             }
-            /* Hogy mobilon is kint legyen a nyelvválasztó, átírjuk: */
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
             .right-controls {
                 gap: 10px;
             }
-            .lang-switcher {
-                display: flex;
+            .contact-header {
+                display: none; /* Mobilon elrejtjük a fenti gombot, mert lent van a zöld lebegő */
             }
             .hero-content h2 {
                 font-size: 2.2rem;
@@ -492,6 +421,7 @@
             .btn-large {
                 width: 100%;
                 justify-content: center;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -514,20 +444,8 @@
             <div class="contact-header">
                 <a href="tel:+36205104225"><i class="fas fa-phone-alt"></i> 06 20 510 4225</a>
             </div>
-            <button class="menu-toggle-btn" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </header>
-
-    <nav class="side-menu" id="sideMenu">
-        <button class="close-menu-btn" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
-        <a href="#services" onclick="toggleMenu()" data-trn="menu_services">Szolgáltatásaim</a>
-        <a href="#reviews" onclick="toggleMenu()" data-trn="menu_reviews">Vélemények</a>
-        <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="menu-map-btn" data-trn="btn_map">
-            <i class="fas fa-map-marker-alt"></i> Térkép
-        </a>
-    </nav>
 
     <section class="hero">
         <div class="hero-overlay"></div>
@@ -537,12 +455,13 @@
             <div class="action-buttons">
                 <a href="tel:+36205104225" class="btn-large btn-call" data-trn="btn_call"><i class="fas fa-taxi"></i> Hívás Most</a>
                 <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="btn-large btn-map" data-trn="btn_map"><i class="fas fa-map-marker-alt"></i> Térkép</a>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services-section">
-        <h2 class="section-title" data-trn="services_title">Szolgáltatásaim</h2>
+    <section class="services-section">
+        <h2 class="section-title" data-trn="services_title">Szolgáltatásaink</h2>
         <div class="services-grid">
             
             <div class="service-card">
@@ -584,7 +503,7 @@
         </div>
     </section>
 
-    <section id="reviews" class="reviews-section">
+    <section class="reviews-section">
         <h2 class="section-title" data-trn="reviews_title">Rólam mondták</h2>
         <div class="reviews-grid">
             
@@ -621,12 +540,6 @@
             </div>
 
         </div>
-        
-        <div class="review-action-container">
-            <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="btn-large btn-review" data-trn="btn_write_review">
-                <i class="fas fa-pencil-alt"></i> Vélemény írása
-            </a>
-        </div>
     </section>
 
     <footer>
@@ -650,16 +563,14 @@
     </a>
 
     <script>
+        // Nyelvi váltó funkció
         const translations = {
             hu: {
-                menu_services: "Szolgáltatásaim",
-                menu_reviews: "Vélemények",
                 hero_title: "Gyors & Megbízható Taxi",
                 hero_desc: "Személyszállítás Balatonbogláron és vonzáskörzetében, kompromisszumok nélkül.",
                 btn_call: "Hívás Most",
                 btn_map: "Térkép",
-                btn_write_review: "Vélemény írása",
-                services_title: "Szolgáltatásaim",
+                services_title: "Szolgáltatásaink",
                 serv1_title: "1-6 Fő Szállítása",
                 serv1_desc: "Kényelmes egyterű autómmal vállalom kisebb csoportok, családok szállítását.",
                 serv2_title: "Bankkártyás Fizetés",
@@ -683,14 +594,11 @@
                 footer_copy: "© 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva."
             },
             de: {
-                menu_services: "Meine Dienstleistungen",
-                menu_reviews: "Bewertungen",
                 hero_title: "Schnelles & Zuverlässiges Taxi",
                 hero_desc: "Personenbeförderung in Balatonboglár und Umgebung - ohne Kompromisse.",
                 btn_call: "Jetzt anrufen",
                 btn_map: "Karte",
-                btn_write_review: "Bewertung schreiben",
-                services_title: "Meine Dienstleistungen",
+                services_title: "Unsere Dienstleistungen",
                 serv1_title: "Transport für 1-6 Personen",
                 serv1_desc: "Mit meinem komfortablen Großraumwagen befördere ich kleinere Gruppen und Familien.",
                 serv2_title: "Kartenzahlung",
@@ -725,8 +633,6 @@
                         element.innerHTML = "<i class='fas fa-taxi'></i> " + translation;
                     } else if (key === 'btn_map') {
                         element.innerHTML = "<i class='fas fa-map-marker-alt'></i> " + translation;
-                    } else if (key === 'btn_write_review') {
-                        element.innerHTML = "<i class='fas fa-pencil-alt'></i> " + translation;
                     } else {
                         element.textContent = translation;
                     }
@@ -739,10 +645,21 @@
             document.documentElement.lang = lang;
         }
 
-        // Menü megnyitása és bezárása
-        function toggleMenu() {
-            const sideMenu = document.getElementById('sideMenu');
-            sideMenu.classList.toggle('active');
+        // --- ÚJ FUNKCIÓ: Fejléc elrejtése lefelé görgetéskor, megjelenítése felfelé görgetéskor ---
+        let prevScrollpos = window.scrollY || window.pageYOffset;
+        const topBar = document.querySelector(".top-bar");
+        
+        window.onscroll = function() {
+            let currentScrollPos = window.scrollY || window.pageYOffset;
+            
+            // Ha felfelé görgetünk, VAGY ha még teljesen a lap tetején vagyunk (hogy ne ugráljon feleslegesen)
+            if (prevScrollpos > currentScrollPos || currentScrollPos < 50) {
+                topBar.style.top = "0";
+            } else {
+                // Lefelé görgetünk: elcsúsztatjuk a fejlécet felfelé a magasságával megegyező mértékben
+                topBar.style.top = `-${topBar.offsetHeight}px`;
+            }
+            prevScrollpos = currentScrollPos;
         }
     </script>
 
