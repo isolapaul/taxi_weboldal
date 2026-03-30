@@ -164,7 +164,7 @@
             background-image: url('img/taxi_patko.jpeg');
             background-size: cover;
             background-position: center;
-            height: 70vh;
+            height: 70vh; /* Asztali gépen marad 70% */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -399,17 +399,29 @@
             .contact-header {
                 display: none; /* Mobilon elrejtjük a fenti gombot, mert lent van a zöld lebegő */
             }
+
+            /* --- ÚJ KÉP-OPTIMALIZÁLÁSI RÉSZ --- */
+            .hero {
+                height: 100vh; /* Teljes képernyős nyitókép, hogy több látsszon a képből */
+                min-height: 500px; /* Megakadályozzuk, hogy túl alacsony képernyőn összecsukódjon */
+            }
             .hero-content h2 {
                 font-size: 2.2rem;
             }
             .hero-content p {
                 font-size: 1.1rem;
+                margin-bottom: 20px; /* Kisebb hely a szöveg alatt */
+            }
+            .action-buttons {
+                gap: 10px; /* Összébb húzzuk a gombokat */
             }
             .btn-large {
                 width: 100%;
                 justify-content: center;
-                font-size: 1.2rem; /* Mobilon picit kisebb gomb szöveg, hogy kiférjen a 3 gomb */
+                font-size: 1.2rem; /* Kisebb gomb-szöveg mobilra */
+                padding: 10px 20px; /* Kisebb gomb-magasság, hogy kecsesebb legyen és ne takarjon */
             }
+            /* --- END ÚJ KÉP-OPTIMALIZÁLÁSI RÉSZ --- */
         }
     </style>
 </head>
@@ -442,7 +454,7 @@
             <div class="action-buttons">
                 <a href="tel:+36205104225" class="btn-large btn-call" data-trn="btn_call"><i class="fas fa-taxi"></i> Hívás Most</a>
                 <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" class="btn-large btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <a href="https://maps.app.goo.gl/ws7pJdXnJbGW7qEL9" target="_blank" rel="noopener noreferrer" class="btn-large btn-map" data-trn="btn_map"><i class="fas fa-map-marker-alt"></i> Térkép</a>
+                <a href="https://maps.app.goo.gl/K8K6G" target="_blank" rel="noopener noreferrer" class="btn-large btn-map" data-trn="btn_map"><i class="fas fa-map-marker-alt"></i> Térkép</a>
             </div>
         </div>
     </section>
@@ -497,7 +509,7 @@
             <div class="review-card">
                 <i class="fas fa-quote-left"></i>
                 <div class="stars">★★★★★</div>
-                <p class="review-text" data-trn="rev1_text">"Többször is utaztunk már Gáborral, és mindig megbízható és pontos! Kiválóan beszél németül, szuper barátságos, és ráadásul jóképű is 😉🙈 Nagyon ajánlom! Nagyon köszönöm, hogy ilyen megbízható vagy!"</p>
+                <p class="review-text" data-trn="rev1_text">"Többször is utaztunk már Gáborral, and mindig megbízható és pontos! Kiválóan beszél németül, szuper barátságos, és ráadásul jóképű is 😉🙈 Nagyon ajánlom! Nagyon köszönöm, hogy ilyen megbízható vagy!"</p>
                 <div class="reviewer-name">Dorottya Bolz</div>
                 <div class="review-source"><i class="fab fa-google"></i> Google Értékelés</div>
             </div>
@@ -532,7 +544,7 @@
     <footer>
         <h2>Kalász Gábor Taxi</h2>
         <div class="footer-info">
-            <p><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> <a href="https://www.google.com/maps/place/Kal%C3%A1sz+Patk%C3%B3+G%C3%A1bor+(1-6+F%C5%91%2FPersonen)/@46.7700112,17.6671332,17z" target="_blank" rel="noopener noreferrer" style="color: var(--light);">8630 Balatonboglár, Wesselényi u. 25.</a></p>
+            <p><i class="fas fa-map-marker-alt" style="color: var(--primary);"></i> <a href="https://maps.app.goo.gl/K8K6G" target="_blank" rel="noopener noreferrer" style="color: var(--light);">8630 Balatonboglár, Wesselényi u. 25.</a></p>
             <p><i class="fas fa-phone" style="color: var(--primary);"></i> <a href="tel:+36205104225">06 20 510 4225</a></p>
             <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/36205104225" target="_blank" rel="noopener noreferrer" style="color: #25D366;" data-trn="footer_wa">WhatsApp-on is elérhető</a></p>
         </div>
@@ -541,7 +553,7 @@
             <a href="adatvedelem.html" style="color: #aaa; text-decoration: none; margin: 0 10px;" data-trn="link_adatvedelem">Adatkezelési Tájékoztató</a>
         </div>
         <div class="copyright" data-trn="footer_copy">
-            &copy; 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva.
+            © 2026 taxipatkobalatonboglar.hu | Minden jog fenntartva.
         </div>
     </footer>
 
@@ -570,7 +582,7 @@
                 serv6_title: "Kiváló Értékelés",
                 serv6_desc: "Utasaim elégedettsége a legfontosabb. Büszke vagyok az 5 csillagos Google értékelésemre!",
                 reviews_title: "Rólam mondták",
-                rev1_text: "\"Többször is utaztunk már Gáborral, és mindig megbízható és pontos! Kiválóan beszél németül, szuper barátságos, és ráadásul jóképű is 😉🙈 Nagyon ajánlom! Nagyon köszönöm, hogy ilyen megbízható vagy!\"",
+                rev1_text: "\"Többször is utaztunk már Gáborral, and mindig megbízható és pontos! Kiválóan beszél németül, szuper barátságos, és ráadásul jóképű is 😉🙈 Nagyon ajánlom! Nagyon köszönöm, hogy ilyen megbízható vagy!\"",
                 rev2_text: "\"Gábor,nemcsak egy helyes,jóképű taxisofőr hanem egy ÚRIEMBER is!! Nagyon köszönjük, hogy szombaton hajnalban haza juttatott minket a szállitáshelyünkre!Nem volt egyszerű!A kellemetlenségekért elnézést kérünk! Hatalmas türelme van az emberekhez,ami nagyon ritka! Csak ajánlani tudjuk!! Üdvözöllek, Noémi 🤗\"",
                 rev3_text: "\"Tisztelettudó, kedves, segítőkész, folyamatos pörgés mellett szakított ránk időt hogy eljussunk a koncertünkre, hazafele pedig bár ő nem volt a városban ajánlott mást hogy haza is juthassunk, 10/10 a hozzáállása és kedvessége, köszönöm\"",
                 rev4_text: "\"Balaton déli partján a legszuperebb taxis, kedves, gyors, korrekt áron dolgozik. Csak ajánlani tudom!!\"",
